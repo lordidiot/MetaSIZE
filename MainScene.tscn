@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TopTile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CameraController.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/mid_tile.png" type="Texture" id=4]
+
+[sub_resource type="ShaderMaterial" id=3]
+
+[node name="MainScene" type="Node2D"]
+material = SubResource( 3 )
+
+[node name="mid_tile" type="Sprite" parent="."]
+position = Vector2( -8, 30 )
+texture = ExtResource( 4 )
+
+[node name="mid_tile2" type="Sprite" parent="."]
+position = Vector2( 8, 30 )
+texture = ExtResource( 4 )
+
+[node name="mid_tile3" type="Sprite" parent="."]
+position = Vector2( 23, 30 )
+texture = ExtResource( 4 )
+
+[node name="mid_tile4" type="Sprite" parent="."]
+position = Vector2( -24, 30 )
+texture = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -5, -17 )
+
+[node name="TopTile" parent="." instance=ExtResource( 2 )]
+position = Vector2( -24, 16 )
+
+[node name="TopTile3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8, 16 )
+
+[node name="TopTile4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 23, 16 )
+
+[node name="TopTile5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 39, 16 )
+
+[node name="TopTile2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8, 16 )
+
+[node name="TopTile6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 55, 16 )
+
+[node name="TopTile7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 87, 16 )
+
+[node name="TopTile8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 102, 16 )
+
+[node name="TopTile9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 71, 16 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.25, 0.25 )
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+script = ExtResource( 3 )
