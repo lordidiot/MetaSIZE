@@ -1,0 +1,115 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://m5x7.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+
+[node name="Instructions" type="Node2D"]
+
+[node name="W" type="Label" parent="."]
+margin_left = 25.0
+margin_top = 32.0
+margin_right = 41.0
+margin_bottom = 47.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "W"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 24.0
+margin_bottom = 63.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "A"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S" type="Label" parent="."]
+margin_left = 25.0
+margin_top = 48.0
+margin_right = 41.0
+margin_bottom = 63.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "S"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D" type="Label" parent="."]
+margin_left = 42.0
+margin_top = 48.0
+margin_right = 58.0
+margin_bottom = 63.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "D"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Movements" type="Label" parent="."]
+margin_left = 65.0
+margin_top = 40.0
+margin_right = 122.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Movements"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Basic" type="Label" parent="."]
+margin_right = 126.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Find the next organ to 
+complete the level!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Basic2" type="Label" parent="."]
+margin_left = 280.0
+margin_top = 24.0
+margin_right = 478.0
+margin_bottom = 53.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Grow as time goes,
+Timmy gets slower as he gets larger!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

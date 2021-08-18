@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://m5x7.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Sprites/health_under.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/health_over.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/health_bar.png" type="Texture" id=4]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 6.26382
+margin_top = 3.98697
+margin_right = 30.2638
+margin_bottom = 17.987
+rect_scale = Vector2( 0.8, 0.8 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+text = "Size"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+margin_right = 256.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HealthProgress" type="TextureProgress" parent="."]
+margin_left = 28.905
+margin_top = 1.88982
+margin_right = 92.905
+margin_bottom = 17.8898
+value = 20.0
+texture_under = ExtResource( 2 )
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

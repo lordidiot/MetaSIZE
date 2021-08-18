@@ -1,6 +1,5 @@
-extends Camera2D
+extends Control
 
-onready var player = get_parent()
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -9,16 +8,21 @@ onready var player = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$VBoxContainer/StartButton.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-# tracks the player along the X axis
-func _process (delta):
-	pass
-	#position.x = player.position.x
+#func _process(delta):
+#	pass
 
 
-func _on_Player_health_change(health):
-	$HUD/HealthProgress.value = health
+func _on_StartButton_pressed():
+	get_tree().change_scene("res://Levels/Level1.tscn")
+
+
+func _on_CreditsButton_pressed():
 	pass # Replace with function body.
+
+
+func _on_QuitButton_pressed():
+	get_tree().quit()

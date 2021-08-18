@@ -1,10 +1,10 @@
-extends Camera2D
+extends Area2D
 
-onready var player = get_parent()
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+export(PackedScene) var next_level
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,12 +13,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-# tracks the player along the X axis
-func _process (delta):
-	pass
-	#position.x = player.position.x
+#func _process(delta):
+#	pass
 
-
-func _on_Player_health_change(health):
-	$HUD/HealthProgress.value = health
-	pass # Replace with function body.
+func _on_Goal_body_entered(body):
+	get_tree().change_scene_to(next_level)
