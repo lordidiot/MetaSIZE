@@ -39,5 +39,5 @@ func _physics_process(delta):
 		var collider = collision.collider
 		if collider is Player:
 			var player : Player = collider
-			player.take_damage(10)
+			player.take_antibody_damage()
 	

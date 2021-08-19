@@ -25,6 +25,10 @@ const STARTING_POS : Vector2 = Vector2(50, 75)
 const SPEED_TINY : int = 200
 const SPEED_MEDIUM : int = 140
 const SPEED_BIG : int = 80
+
+const DAMAGE_LASER : int = 10
+const DAMAGE_ANTIBODY : int = 10
+const DAMAGE_CHEMO : int = 5
 const DAMAGE_COOLDOWN : int = 2
 
 
@@ -93,6 +97,17 @@ func take_damage(damage):
 		change_health(-damage)
 		damage_timer = DAMAGE_COOLDOWN
 
+func take_antibody_damage():
+	take_damage(DAMAGE_ANTIBODY)
+
+func take_laser_damage():
+	take_damage(DAMAGE_LASER)
+
+func take_chemo_damage():
+	var taken_damage : bool = damage_timer <= 0
+	take_damage(DAMAGE_CHEMO)
+	return taken_damage
+
 func change_health(delta):
 	health += delta
 	if health < 0:
@@ -114,9 +129,15 @@ func change_health(delta):
 	
 	if delta:
 		emit_signal("health_change", health)
-	
-	
 
 func _on_HealthTimer_timeout():
 	change_health(1)
+	pass # Replace with function body.
+
+func _on_Laser_area_entered(area):
+	take_laser_damage()
+	print("entered")
+
+
+func _on_Laser_body_entered(body):
 	pass # Replace with function body.
