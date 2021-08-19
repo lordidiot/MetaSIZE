@@ -13,11 +13,16 @@ signal health_change(health)
 var health : int = 20
 var stage : int = 0
 var score : int = 0
-var speed : int = 120
+var speed : int = 200
 var jumpForce: int = 220
 var gravity : int = 800
 var vel : Vector2 = Vector2()
 var grounded : bool = false
+
+const STARTING_POS : Vector2 = Vector2(50, 75)
+const SPEED_TINY : int = 200
+const SPEED_MEDIUM : int = 140
+const SPEED_BIG : int = 80
 
 
 # Called when the node enters the scene tree for the first time.
@@ -51,18 +56,24 @@ func _physics_process(delta):
 	elif vel.x > 0:
 		sprite.flip_h = false
 
+	if position.y > 250:
+		position = STARTING_POS
+
 func change_stage(stage):
 	sprite.visible = false
 	collider.disabled = true
 	if stage == 0:
 		sprite = $Small
 		collider = $SmallCollision
+		speed = SPEED_TINY
 	elif stage == 1:
 		sprite = $Medium
 		collider = $MediumCollision
+		speed = SPEED_MEDIUM
 	else:
 		sprite = $Large
 		collider = $LargeCollision
+		speed = SPEED_BIG
 	sprite.visible = true
 	collider.disabled = false
 		

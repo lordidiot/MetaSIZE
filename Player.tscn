@@ -52,6 +52,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
-position = Vector2( 0, -20 )
+position = Vector2( 0, -19.9202 )
+
 [connection signal="health_change" from="." to="Camera" method="_on_Player_health_change"]
 [connection signal="timeout" from="HealthTimer" to="." method="_on_HealthTimer_timeout"]
