@@ -19,10 +19,13 @@ var gravity : int = 800
 var vel : Vector2 = Vector2()
 var grounded : bool = false
 
+var damage_timer : float = 0
+
 const STARTING_POS : Vector2 = Vector2(50, 75)
 const SPEED_TINY : int = 200
 const SPEED_MEDIUM : int = 140
 const SPEED_BIG : int = 80
+const DAMAGE_COOLDOWN : int = 2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -59,6 +62,11 @@ func _physics_process(delta):
 	if position.y > 250:
 		position = STARTING_POS
 
+	if damage_timer > 0:
+		damage_timer -= delta
+	if damage_timer < 0:
+		damage_timer = 0
+
 func change_stage(stage):
 	sprite.visible = false
 	collider.disabled = true
@@ -76,10 +84,22 @@ func change_stage(stage):
 		speed = SPEED_BIG
 	sprite.visible = true
 	collider.disabled = false
-		
+
+func take_damage(damage):
+	if health == 0:
+		return
+
+	if damage_timer <= 0:
+		change_health(-damage)
+		damage_timer = DAMAGE_COOLDOWN
 
 func change_health(delta):
 	health += delta
+	if health < 0:
+		health = 0
+	if health > 100:
+		health = 100
+
 	var new_stage = -1
 	if health < 33:
 		new_stage = 0
