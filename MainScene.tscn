@@ -58,4 +58,5 @@ position = Vector2( 71, 16 )
 
 [node name="Camera" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -0.25 )
+
 [connection signal="health_change" from="Player" to="Camera" method="_on_Player_health_change"]

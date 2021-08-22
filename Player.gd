@@ -7,7 +7,7 @@ onready var damage_timer = $DamageTimer
 
 # signals
 signal health_change(health)
-signal damage_taken()
+signal damage_taken(damage)
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -31,8 +31,8 @@ const SPEED_BIG : int = 80
 
 const DAMAGE_LASER : int = 10
 const DAMAGE_ANTIBODY : int = 10
-const DAMAGE_CHEMO : int = 5
-const DAMAGE_COOLDOWN : int = 2
+const DAMAGE_CHEMO : int = 20
+const DAMAGE_COOLDOWN : int = 5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,7 +40,6 @@ func _ready():
 	sprite.visible = true
 	collider.disabled = false
 	sprite.get_node("PlayerEffect").play("Idle")
-	reset()
 
 func reset():
 	position = STARTING_POS
@@ -53,6 +52,8 @@ func reset():
 	invulnerable = true
 	damage_timer.start()
 	sprite.get_node("PlayerEffect").play("Idle")
+	
+	get_parent().get_tree().reload_current_scene()
 
 func die():
 	dead = true
@@ -112,7 +113,7 @@ func take_damage(damage):
 
 	change_health(-damage)
 	invulnerable = true
-	emit_signal("damage_taken")
+	emit_signal("damage_taken", damage)
 
 	sprite.get_node("PlayerEffect").play("Damage")
 	if dead:
@@ -123,13 +124,22 @@ func take_damage(damage):
 		sprite.get_node("PlayerEffect").queue("Invulnerable")
 
 func take_antibody_damage():
+	if dead or invulnerable:
+		return
+	$AntibodySound.play()
 	take_damage(DAMAGE_ANTIBODY)
 
 func take_laser_damage():
+	if dead or invulnerable:
+		return
+	$LaserSound.play()
 	take_damage(DAMAGE_LASER)
 
 func take_chemo_damage():
+	if dead or invulnerable:
+		return
 	var taken_damage : bool = not invulnerable
+	$BombSound.play()
 	take_damage(DAMAGE_CHEMO)
 	return taken_damage
 

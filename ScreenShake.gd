@@ -36,3 +36,7 @@ func _on_Frequency_timeout():
 func _on_Duration_timeout():
 	_reset()
 	$Frequency.stop()
+
+
+func _on_Player_damage_taken(damage):
+	start(0.2, 15, damage / 2.5)

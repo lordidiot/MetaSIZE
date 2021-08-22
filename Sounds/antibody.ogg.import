@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/antibody.ogg-f3870cce8e949b8aa81e9ff8825ec371.oggstr"
+
+[deps]
+
+source_file="res://Sounds/antibody.ogg"
+dest_files=[ "res://.import/antibody.ogg-f3870cce8e949b8aa81e9ff8825ec371.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

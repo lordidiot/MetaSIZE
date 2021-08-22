@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Waves of Inspiration_wav.wav-4f9c5301299bee697ca7b93cc20245a1.sample"
+
+[deps]
+
+source_file="res://Sounds/Waves of Inspiration_wav.wav"
+dest_files=[ "res://.import/Waves of Inspiration_wav.wav-4f9c5301299bee697ca7b93cc20245a1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
