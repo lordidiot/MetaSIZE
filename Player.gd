@@ -22,6 +22,7 @@ var vel : Vector2 = Vector2()
 var grounded : bool = false
 
 var invulnerable : bool = false
+var dead : bool = false
 
 const STARTING_POS : Vector2 = Vector2(50, 75)
 const SPEED_TINY : int = 200
@@ -38,14 +39,33 @@ const DAMAGE_COOLDOWN : int = 2
 func _ready():
 	sprite.visible = true
 	collider.disabled = false
-	pass # Replace with function body.
+	sprite.get_node("PlayerEffect").play("Idle")
+	reset()
 
+func reset():
+	position = STARTING_POS
+	health = 20
+	dead = false
+
+	collider.disabled = false
+	change_stage(0)
+	
+	invulnerable = true
+	damage_timer.start()
+	sprite.get_node("PlayerEffect").play("Idle")
+
+func die():
+	dead = true
+	collider.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
 func _physics_process(delta):
+	if dead:
+		return
+
 	vel.x = 0
 	
 	if Input.is_action_pressed("move_left"):
@@ -66,7 +86,7 @@ func _physics_process(delta):
 		sprite.flip_h = false
 
 	if position.y > 250:
-		position = STARTING_POS
+		reset()
 
 func change_stage(stage):
 	sprite.visible = false
@@ -87,16 +107,20 @@ func change_stage(stage):
 	collider.disabled = false
 
 func take_damage(damage):
-	if health == 0:
+	if invulnerable or dead:
 		return
 
-	if not invulnerable:
-		change_health(-damage)
-		invulnerable = true
+	change_health(-damage)
+	invulnerable = true
+	emit_signal("damage_taken")
+
+	sprite.get_node("PlayerEffect").play("Damage")
+	if dead:
+		sprite.get_node("PlayerEffect").queue("Death")
+		# sprite.get_node("PlayerEffect").queue("Invulnerable")
+	else:
 		damage_timer.start()
-		sprite.get_node("PlayerEffect").play("Damage")
 		sprite.get_node("PlayerEffect").queue("Invulnerable")
-		emit_signal("damage_taken")
 
 func take_antibody_damage():
 	take_damage(DAMAGE_ANTIBODY)
@@ -130,6 +154,9 @@ func change_health(delta):
 	
 	if delta:
 		emit_signal("health_change", health)
+
+	if health == 0:
+		die()
 
 func _on_HealthTimer_timeout():
 	change_health(1)
