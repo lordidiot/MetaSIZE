@@ -2,9 +2,9 @@
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Levels/Level4.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Goal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://m5x7.tres" type="DynamicFont" id=5]
-[ext_resource path="res://Menu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/Antibody.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/Laser.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/ChemoBomb.tscn" type="PackedScene" id=9]
@@ -26,7 +26,7 @@ position = Vector2( 51.4595, 77.8245 )
 
 [node name="Goal" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1432.37, 85.9407 )
-next_level = ExtResource( 6 )
+next_level = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 1389.47

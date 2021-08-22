@@ -22,7 +22,7 @@ func _on_StartButton_pressed():
 
 
 func _on_CreditsButton_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://Levels/Level5.tscn")
 
 
 func _on_QuitButton_pressed():
