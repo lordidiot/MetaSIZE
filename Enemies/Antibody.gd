@@ -32,12 +32,11 @@ func _physics_process(delta):
 	if abs((position - starting_pos).x) >= RANGE:
 		direction *= -1
 		starting_pos = position
-		
-	var slide_count = get_slide_count()
-	for i in slide_count:
-		var collision = get_slide_collision(i)
-		var collider = collision.collider
-		if collider is Player:
-			var player : Player = collider
-			player.take_antibody_damage()
+	
+
+
+func _on_Area2D_body_entered(body):
+	if body is Player:
+		var player : Player = body
+		player.take_antibody_damage()
 	
