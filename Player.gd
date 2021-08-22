@@ -3,9 +3,11 @@ extends KinematicBody2D
 # components
 onready var sprite = $Small
 onready var collider = $SmallCollision
+onready var damage_timer = $DamageTimer
 
 # signals
 signal health_change(health)
+signal damage_taken()
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -19,7 +21,7 @@ var gravity : int = 800
 var vel : Vector2 = Vector2()
 var grounded : bool = false
 
-var damage_timer : float = 0
+var invulnerable : bool = false
 
 const STARTING_POS : Vector2 = Vector2(50, 75)
 const SPEED_TINY : int = 200
@@ -66,11 +68,6 @@ func _physics_process(delta):
 	if position.y > 250:
 		position = STARTING_POS
 
-	if damage_timer > 0:
-		damage_timer -= delta
-	if damage_timer < 0:
-		damage_timer = 0
-
 func change_stage(stage):
 	sprite.visible = false
 	collider.disabled = true
@@ -93,9 +90,13 @@ func take_damage(damage):
 	if health == 0:
 		return
 
-	if damage_timer <= 0:
+	if not invulnerable:
 		change_health(-damage)
-		damage_timer = DAMAGE_COOLDOWN
+		invulnerable = true
+		damage_timer.start()
+		sprite.get_node("PlayerEffect").play("Damage")
+		sprite.get_node("PlayerEffect").queue("Invulnerable")
+		emit_signal("damage_taken")
 
 func take_antibody_damage():
 	take_damage(DAMAGE_ANTIBODY)
@@ -104,7 +105,7 @@ func take_laser_damage():
 	take_damage(DAMAGE_LASER)
 
 func take_chemo_damage():
-	var taken_damage : bool = damage_timer <= 0
+	var taken_damage : bool = not invulnerable
 	take_damage(DAMAGE_CHEMO)
 	return taken_damage
 
@@ -141,3 +142,10 @@ func _on_Laser_area_entered(area):
 
 func _on_Laser_body_entered(body):
 	pass # Replace with function body.
+
+
+func _on_DamageTimer_timeout():
+	invulnerable = false
+	sprite.visible = true
+	sprite.get_node("PlayerEffect").stop()
+	sprite.get_node("PlayerEffect").play("Idle")
